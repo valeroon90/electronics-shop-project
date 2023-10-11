@@ -26,3 +26,12 @@ def test_string_to_number():
     assert Item.string_to_number('5') == 5
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5
+
+
+def test___repr__(object1):
+    assert repr(object1) == "Item('Суперпупер', 78000, 10)"
+
+
+def test__str__(object1):
+    assert str(object1) == 'Суперпупер'
+
