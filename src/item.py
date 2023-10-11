@@ -32,11 +32,12 @@ class Item:
         return self.price * self.quantity
 
 
-    def apply_discount(self) -> None:
+    def apply_discount(self):
         """
         Применяет установленную скидку для конкретного товара.
         """
-        self.price = self.price * Item.pay_rate
+        self.price *= self.pay_rate
+        return self.price
 
 
     @property
@@ -46,19 +47,19 @@ class Item:
 
     @name.setter
     def name(self, data_str: str):
-        if len(data_str) > 10:
-            self.__name = data_str[:10]
-        self.__name = data_str
+       # if len(data_str) > 10:
+            #self.__name = data_str[:10]
+        self.__name = data_str[:10]
 
 
     @classmethod
     def instantiate_from_csv(cls):
         Item.all = []
+        #cls.all.clear()
         with open('..\src\items.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                cls(row['name'], float(row['price']), int(row['quantity']))
-
 
 
     @staticmethod
