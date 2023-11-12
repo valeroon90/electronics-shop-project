@@ -71,7 +71,6 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         Item.all = []
-        #cls.all.clear()
         with open('..\src\items.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
