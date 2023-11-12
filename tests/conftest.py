@@ -5,7 +5,7 @@ from src.phone import Phone
 
 @pytest.fixture
 def object1():
-    return Item("TV", 78000, 20)
+    return Item("Суперпуперск", 78000, 10)
 
 
 @pytest.fixture

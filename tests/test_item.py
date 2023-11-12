@@ -3,7 +3,7 @@ from src.phone import Phone
 
 
 def test_calculate_total_price(object1):
-    assert object1.calculate_total_price() == 1560000
+    assert object1.calculate_total_price() == 780000
 
 
 def test_apply_discount_with_pay_rate(object1):

@@ -1,7 +1,6 @@
 import csv
 
 
-
 class Item:
     """
     Класс для представления товара в магазине.
@@ -9,7 +8,7 @@ class Item:
     pay_rate = 1.0
     all = []
 
-    def __init__(self, name, price, quantity):
+    def __init__(self, name: str, price: float, quantity: int) -> None:
         """
         Создание экземпляра класса item.
 
@@ -23,21 +22,11 @@ class Item:
         self.total_price = self.quantity * self.price
         Item.all.append(self)
 
-
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
-
     def __str__(self):
         return f"{self.name}"
-
-
-    def __add__(self, other):
-        if isinstance(other, Item):
-            return self.quantity + other.quantity
-        else:
-            raise ValueError("Нельзя сложить `Phone` или `Item` с экземплярами не `Phone` или `Item` классов")
-
 
     def calculate_total_price(self) -> float:
         """
@@ -47,7 +36,6 @@ class Item:
         """
         return self.price * self.quantity
 
-
     def apply_discount(self):
         """
         Применяет установленную скидку для конкретного товара.
@@ -55,11 +43,9 @@ class Item:
         self.price *= self.pay_rate
         return self.price
 
-
     @property
     def name(self):
         return self.__name
-
 
     @name.setter
     def name(self, data_str: str):
@@ -67,17 +53,17 @@ class Item:
             #self.__name = data_str[:10]
         self.__name = data_str[:10]
 
-
     @classmethod
     def instantiate_from_csv(cls):
         Item.all = []
+        #cls.all.clear()
         with open('..\src\items.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 cls(row['name'], float(row['price']), int(row['quantity']))
 
-
     @staticmethod
     def string_to_number(number: str):
         return int(float(number))
+
 
