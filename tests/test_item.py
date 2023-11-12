@@ -30,11 +30,11 @@ def test_string_to_number():
 
 
 def test__repr__(object1):
-    assert repr(object1) == "Item('TV', 78000, 20)"
+    assert repr(object1) == "Item('Суперпупер', 78000, 10)"
 
 
 def test__str__(object1):
-    assert str(object1) == 'TV'
+    assert str(object1) == 'Суперпупер'
 
 
 def test__add__():
