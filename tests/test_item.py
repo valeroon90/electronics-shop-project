@@ -1,5 +1,5 @@
-import pytest
 from src.item import Item
+from src.phone import Phone
 
 
 def test_calculate_total_price(object1):
@@ -24,6 +24,20 @@ def test_name():
 
 
 def test_string_to_number():
-     assert Item.string_to_number('5') == 5
-     assert Item.string_to_number('5.0') == 5
-     assert Item.string_to_number('5.5') == 5
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
+
+
+def test__repr__(object1):
+    assert repr(object1) == "Item('TV', 78000, 20)"
+
+
+def test__str__(object1):
+    assert str(object1) == 'TV'
+
+
+def test__add__():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    item1 = Item("Смартфон", 10000, 20)
+    assert item1 + phone1 == 25
