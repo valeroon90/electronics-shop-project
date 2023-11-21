@@ -33,9 +33,6 @@ class Keyboard(Item, MixinLang):
         self.__name = data_str
 
 
-
-
-
 k = Keyboard('Dark Project KD87A', 10000, 8)
 
 
