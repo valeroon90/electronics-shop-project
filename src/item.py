@@ -1,6 +1,9 @@
 import csv
 #from abc import ABC, abstractmethod
 
+class InstantiateCSVError(Exception):
+    pass
+
 
 class Item:
     """
@@ -62,11 +65,23 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        Item.all = []
-        with open('..\src\items.csv', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                cls(row['name'], float(row['price']), int(row['quantity']))
+        try:
+            Item.all = []
+            with open('..\src\items.csv', newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    if 'name' not in row or 'price' not in row or 'quantity' not in row:
+                        raise InstantiateCSVError
+                    cls(row['name'], float(row['price']), int(row['quantity']))
+
+        except FileNotFoundError:
+            print("FileNotFoundError: Отсутствует файл item.csv")
+            raise
+        except InstantiateCSVError:
+            print("InstantiateCSVError: Файл item.csv поврежден")
+            raise
+
+
 
     @staticmethod
     def string_to_number(number: str):
